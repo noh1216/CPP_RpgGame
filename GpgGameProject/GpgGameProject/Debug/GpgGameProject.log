@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\noh12\source\repos\CPP_RpgGame\GpgGameProject\GpgGameProject\main.cpp(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\noh12\source\repos\CPP_RpgGame\GpgGameProject\GpgGameProject\main.cpp(32,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GpgGameProject.vcxproj -> C:\Users\noh12\source\repos\CPP_RpgGame\GpgGameProject\Debug\GpgGameProject.exe
