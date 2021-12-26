@@ -4,6 +4,10 @@
 
 #define COMMAND_SIZE 256
 
+#define COLS 156
+#define LINE 50
+
+
 using namespace std;
 
 void init();
@@ -26,10 +30,7 @@ void init() {
 	
 	char screenCommand[COMMAND_SIZE];
 
-	const int cols = 156;
-	const int line = 50;
-
-	sprintf(screenCommand, "mode con cols=%d lines=%d | title Game", cols, line);
+	sprintf(screenCommand, "mode con cols=%d lines=%d | title Game", COLS, LINE);
 	system(screenCommand);
 }
 
@@ -45,9 +46,17 @@ void mainMenu() {
 		break;
 	case 3:
 		// menual
+		printMenual();
+.,ㅡ,.	case 4:
+		// exit game
+		exit(0);
 		break;
 	default:
+		system("cls");
+		string errorMessage = "잘못된 입력입니다. 다시 입력해주세요";
+		gotoXY(COLS - (COLS/2 + errorMessage.length() / 2), LINE/2);
+		cout << errorMessage;
+		Sleep(1400);
 		selectedNumber = printMenu();
-		break;
 	}
 }
