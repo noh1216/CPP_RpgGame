@@ -142,7 +142,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="configFunctions.h" />
     <ClInclude Include="screenPrint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="menual.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

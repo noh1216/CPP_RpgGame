@@ -1,12 +1,8 @@
 #include<iostream>
-#include "./headers/screenPrint.h";
-
+#include "screenPrint.h"
+#include "configFunctions.h"
 
 #define COMMAND_SIZE 256
-
-#define COLS 156
-#define LINE 50
-
 
 using namespace std;
 
@@ -15,7 +11,6 @@ void mainMenu();
 
 int main() {
 	bool run = true;
-
 	init();
 
 	// Game start
@@ -30,13 +25,15 @@ void init() {
 	
 	char screenCommand[COMMAND_SIZE];
 
-	sprintf(screenCommand, "mode con cols=%d lines=%d | title Game", COLS, LINE);
+	sprintf(screenCommand, "mode con cols=%d lines=%d | title Game", COLS, LINE); // screen size config
 	system(screenCommand);
+
+	CursorView(); // cursor config
 }
 
 void mainMenu() {
-	int selectedNumber = printMenu();
-	switch (selectedNumber)
+	int selectedMenu = printMenuMenager::printMenu();
+	switch (selectedMenu)
 	{
 	case 1:
 		// main adventure
@@ -46,17 +43,13 @@ void mainMenu() {
 		break;
 	case 3:
 		// menual
-		printMenual();
-.,ㅡ,.	case 4:
+		printMenuMenager::printMenual();
+	case 4:
 		// exit game
 		exit(0);
 		break;
 	default:
-		system("cls");
-		string errorMessage = "잘못된 입력입니다. 다시 입력해주세요";
-		gotoXY(COLS - (COLS/2 + errorMessage.length() / 2), LINE/2);
-		cout << errorMessage;
-		Sleep(1400);
-		selectedNumber = printMenu();
+		cout << "ERROR" << endl;
+		exit(0);
 	}
 }
