@@ -3,21 +3,24 @@
 #include<iostream>
 #include<conio.h>
 
+
+// This section defines the functions used throughout the program
+// Function to define : gotoXY, CursorView, keyboard input, calculate center position
+// Data preprocessing : keyboard ascii codes Up Down Enter, 
+//						screen size COLS(width) LINE(height), reserved memory
+
+
+// Ascii codes
 #define UP 72
 #define DOWN 80
 #define ENTER 13
 
+// screen size
 #define COLS 156
 #define LINE 50
 
-namespace gets {
-	int getCOLS() {
-		return COLS;
-	}
-	int getLINE() {
-		return LINE;
-	}
-}
+// preSizing
+#define COMMAND_SIZE 256
 
 void gotoXY(int x, int y) { // change console output position
 	COORD pos;
@@ -55,7 +58,15 @@ int keyboardInput() {
 				if (key == ENTER) {
 					return 10;
 				}
+				return 10;
 			}
 		}
 	}
+}
+
+int* calculateCenter(int wSize, int hSize) {
+	int *centerPos=new int[2];
+	centerPos[0] = COLS / 2 - (wSize / 2);
+	centerPos[1] = LINE / 2 - (hSize / 2);
+	return centerPos;
 }

@@ -13,12 +13,13 @@ namespace printMenuMenager{
 		const int SIZE = 4;
 		string titles[SIZE] = { " 새 게임" ," 불러오기" ," 설명서" , " 게임종료" };
 		char symbol = ' ', uniqueSymbol='>';
-		int symbolPos = 0, cols = gets::getCOLS(), line = gets::getLINE();
+		int symbolPos = 0;
 		
 		while (1) {
 			system("cls");
+			int* center = calculateCenter(titles[1].size(), SIZE);
 			for (int i = 0; i < SIZE; i++) {
-				gotoXY(cols / 2 - (titles[0].size() / 2)-3, line/2-(SIZE/2)+i-2); // UI position
+				gotoXY(center[0]-3, center[1]+i-2); // UI position
 				if (symbolPos == i) {
 					cout << uniqueSymbol << titles[i] << '\n';
 					continue;
@@ -35,6 +36,24 @@ namespace printMenuMenager{
 	}
 
 	void printMenual() {
-		//fstream menual = ifstream()
+		system("cls");
+		ifstream ifs("./menual.txt");
+		if (ifs.fail()) {
+			cout << "menual error";
+		}
+
+		char c;
+		string fileContent = "";
+		int hSize = 0;
+		while (ifs.get(c)) {
+			 fileContent += c;
+			 if (c == '\n') {
+				 hSize++;
+			 }
+		}
+		int *center = calculateCenter(fileContent.size(), hSize);
+		gotoXY(center[0], center[1]-10);
+		cout << fileContent;
+		keyboardInput();
 	}
 }
