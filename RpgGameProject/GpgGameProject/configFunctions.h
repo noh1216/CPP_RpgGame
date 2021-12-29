@@ -1,8 +1,12 @@
 #pragma once
 #include<Windows.h>
+#include<fstream>
 #include<iostream>
+#include<string>
+#include<vector>
 #include<conio.h>
 
+using namespace std;
 
 // This section defines the functions used throughout the program
 // Function to define : gotoXY, CursorView, keyboard input, calculate center position
@@ -64,9 +68,32 @@ int keyboardInput() {
 	}
 }
 
-int* calculateCenter(int wSize, int hSize) {
-	int *centerPos=new int[2];
-	centerPos[0] = COLS / 2 - (wSize / 2);
-	centerPos[1] = LINE / 2 - (hSize / 2);
-	return centerPos;
+int calculateCenter(int size) {
+	return COLS / 2 - (size / 2);
+}
+
+void printFileContent(string filePath, int y) {
+	ifstream ifs(filePath);
+	if (ifs.fail()) {
+		cout << "Error : The file could not be opened by ";
+		return;
+	}
+
+	// Separate each area of content
+	string fileContent = "";
+	vector<string> eachLineOfContent;
+	char c;
+	while (ifs.get(c)) {
+		fileContent += c;
+		if (c == '\n') {
+			eachLineOfContent.push_back(fileContent);
+			fileContent = "";
+		}
+	}
+	eachLineOfContent.push_back(fileContent);
+	for (int i = 0; i < eachLineOfContent.size(); i++) {
+		int center = calculateCenter(eachLineOfContent[i].size());
+		gotoXY(center, y + i);
+		cout << eachLineOfContent[i];
+	}
 }

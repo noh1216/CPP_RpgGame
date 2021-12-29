@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <fstream>
 #include <Windows.h>
+#include <vector>
 #include "configFunctions.h"
 
 using namespace std;
@@ -17,9 +17,9 @@ namespace printMenuMenager{
 		
 		while (1) {
 			system("cls");
-			int* center = calculateCenter(titles[1].size(), SIZE);
+			int center = calculateCenter(titles[1].size());
 			for (int i = 0; i < SIZE; i++) {
-				gotoXY(center[0]-3, center[1]+i-2); // UI position
+				gotoXY(center, LINE/2-(SIZE/2)+i); // UI position
 				if (symbolPos == i) {
 					cout << uniqueSymbol << titles[i] << '\n';
 					continue;
@@ -37,23 +37,7 @@ namespace printMenuMenager{
 
 	void printMenual() {
 		system("cls");
-		ifstream ifs("./menual.txt");
-		if (ifs.fail()) {
-			cout << "menual error";
-		}
-
-		char c;
-		string fileContent = "";
-		int hSize = 0;
-		while (ifs.get(c)) {
-			 fileContent += c;
-			 if (c == '\n') {
-				 hSize++;
-			 }
-		}
-		int *center = calculateCenter(fileContent.size(), hSize);
-		gotoXY(center[0], center[1]-10);
-		cout << fileContent;
+		printFileContent("./menual.txt", 10);
 		keyboardInput();
 	}
 }

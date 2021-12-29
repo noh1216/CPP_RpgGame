@@ -37,25 +37,23 @@ void init() {
 
 int mainMenu() {
 	int selectedMenu = printMenuMenager::printMenu();
-	while (true) {
-		switch (selectedMenu)
-		{
-		case 1:
-			// main adventure
-			break;
-		case 2:
-			// loading data
-			break;
-		case 3:
-			// menual
-			printMenuMenager::printMenual();
-			return 1;
-		case 4:
-			// exit game
-			return 0;
-		default:
-			cout << "ERROR" << endl;
-			return 0;
-		}
+	switch (selectedMenu)
+	{
+	case 1:
+		// main adventure
+		break;
+	case 2:
+		// loading data
+		break;
+	case 3:
+		// menual
+		printMenuMenager::printMenual();
+		return 1;
+	case 4:
+		// exit game
+		return 0;
+	default:
+		cout << "ERROR" << endl;
+		return 0;
 	}
 }
